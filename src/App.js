@@ -8,17 +8,45 @@ class App extends Component {
     super(props)
     this.state = {
       name: "",
+      lagiNgetik: ""
     }
   }
 
+  lagiNgetik = () => {
+    this.setState({
+      lagiNgetik : false
+    })
+  }
   setName = (e) => {
     let name = e.target.value
     this.setState({
-      name : name
+      name : name,
+      lagiNgetik: true
     })
     console.log(name)
   }
+
+  componentDidMount(){
+    this.setState({
+      lagiNgetik: false
+    })
+  }
+
+  componentDidUpdate(){
+    console.log('component melakukan update')
+  }
+
   render(){
+    if(this.state.lagiNgetik === true){
+      return (
+        <div>
+          <input onChange={this.setName}/>
+          <button onClick={this.lagiNgetik}>submit</button>
+          <h3>{this.state.name}</h3>
+          <p>Loading ...</p>
+        </div>
+        );
+    }
       return (
         <div>
           <input onChange={this.setName}/>
