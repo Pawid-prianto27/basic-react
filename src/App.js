@@ -3,6 +3,8 @@ import Deskripsi from './component/deskripsi';
 import * as Helper from './helper';
 import Loading from './helper/loading';
 import * as Services from './services';
+import Movies from './component/movies';
+
 class App extends Component {
 
   constructor(props){
@@ -63,6 +65,7 @@ class App extends Component {
           <input onChange={this.setName}/>
           <h3>{this.state.name}</h3>
           <Deskripsi name={Helper.lowerCase(this.state.name)}/>
+          <Movies data={this.state.movies}/>
         </div>
         );
       }
