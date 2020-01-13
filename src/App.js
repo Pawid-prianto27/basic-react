@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Deskripsi from './component/deskripsi';
-
-
+import * as Helper from './helper';
+import Loading from './helper/loading';
 class App extends Component {
 
   constructor(props){
@@ -43,7 +43,7 @@ class App extends Component {
           <input onChange={this.setName}/>
           <button onClick={this.lagiNgetik}>submit</button>
           <h3>{this.state.name}</h3>
-          <p>Loading ...</p>
+          <Loading/>
         </div>
         );
     }
@@ -51,7 +51,7 @@ class App extends Component {
         <div>
           <input onChange={this.setName}/>
           <h3>{this.state.name}</h3>
-          <Deskripsi name={this.state.name}/>
+          <Deskripsi name={Helper.lowerCase(this.state.name)}/>
         </div>
         );
       }
