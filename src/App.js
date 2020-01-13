@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import Deskripsi from './component/deskripsi';
 import * as Helper from './helper';
 import Loading from './helper/loading';
+import * as Services from './services';
 class App extends Component {
 
   constructor(props){
     super(props)
     this.state = {
       name: "",
-      lagiNgetik: ""
+      lagiNgetik: "",
+      movies: []
     }
   }
 
@@ -30,6 +32,14 @@ class App extends Component {
     this.setState({
       lagiNgetik: false
     })
+    this.createRequest()
+  }
+
+  createRequest = async() => {
+    let response = await Services.loadMOvies()
+    this.setState({
+      movies: response.data.movies
+    })
   }
 
   componentDidUpdate(){
@@ -37,6 +47,7 @@ class App extends Component {
   }
 
   render(){
+    console.log(this.state.movies)
     if(this.state.lagiNgetik === true){
       return (
         <div>
